@@ -8,15 +8,18 @@ const server = net.createServer((socket) => {
 })
 server.on('connection', (data,err) => {
   console.log('connection created');
-  data.end('goodbye\n');
+})
+
+server.on('data', data => {
+  console.log(data);
 })
 
 server.on('end', data => {
-  console.log('bye', data);
+  console.log('end', data);
 })
 
 server.on('close', data => {
-  console.log('bye2', data);
+  console.log('close', data);
 })
 
 // grab an arbitrary unused port.
