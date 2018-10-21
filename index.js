@@ -1,4 +1,8 @@
 const net = require('net');
+const express = require('express');
+
+const app = express();
+const port = process.env.PORT || 3000;
 
 const server = net.createServer((socket) => {
 
@@ -27,4 +31,12 @@ server.listen({
   host:'localhost',
   port: 5000}, () => {
   console.log('opened server on', server.address());
+});
+
+app.get('/',(req, res) => {
+  res.status(200).send({msg:'hello from root'});
+})
+
+app.listen(port, function(err){
+  console.log('running on server on port: ' + port);
 });
