@@ -1,0 +1,230 @@
+{
+	"info": {
+		"_postman_id": "5db515fc-ce43-40e4-837b-4caad755b97c",
+		"name": "IOT2018",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "test_thingspeak_app",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://api.thingspeak.com/apps/thinghttp/send_request?api_key=CMVTGQ9DI2IGTJNJ",
+					"protocol": "https",
+					"host": [
+						"api",
+						"thingspeak",
+						"com"
+					],
+					"path": [
+						"apps",
+						"thinghttp",
+						"send_request"
+					],
+					"query": [
+						{
+							"key": "api_key",
+							"value": "CMVTGQ9DI2IGTJNJ"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Barcode Search",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://api.edamam.com/api/food-database/parser?upc=023700016256&app_id={{FOOD_APP_ID}}&app_key={{FOOD_API_KEY}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"edamam",
+						"com"
+					],
+					"path": [
+						"api",
+						"food-database",
+						"parser"
+					],
+					"query": [
+						{
+							"key": "upc",
+							"value": "023700016256"
+						},
+						{
+							"key": "app_id",
+							"value": "{{FOOD_APP_ID}}"
+						},
+						{
+							"key": "app_key",
+							"value": "{{FOOD_API_KEY}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update_fields",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://api.thingspeak.com/update?api_key={{THINGS_SPEAK_WRITE_KEY}}&field2=1",
+					"protocol": "https",
+					"host": [
+						"api",
+						"thingspeak",
+						"com"
+					],
+					"path": [
+						"update"
+					],
+					"query": [
+						{
+							"key": "api_key",
+							"value": "{{THINGS_SPEAK_WRITE_KEY}}"
+						},
+						{
+							"key": "field1",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "field2",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Recipe",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://api.edamam.com/search?q=Stripe&app_id={{RECIPES_APP_ID}}&app_key={{RECIPES_API_KEY}}&from=0&to=3",
+					"protocol": "https",
+					"host": [
+						"api",
+						"edamam",
+						"com"
+					],
+					"path": [
+						"search"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "Stripe"
+						},
+						{
+							"key": "app_id",
+							"value": "{{RECIPES_APP_ID}}"
+						},
+						{
+							"key": "app_key",
+							"value": "{{RECIPES_API_KEY}}"
+						},
+						{
+							"key": "from",
+							"value": "0"
+						},
+						{
+							"key": "to",
+							"value": "3"
+						},
+						{
+							"key": "calories",
+							"value": "591-722",
+							"disabled": true
+						},
+						{
+							"key": "health",
+							"value": "alcohol-free",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "77e025ca-6eb5-4452-b031-5c9c1b7cff48",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "653ef9d8-7b13-4109-8c99-c90f5707d713",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "b7d0a5d4-c977-40dc-9bb7-f599b560f698",
+			"key": "FOOD_APP_ID",
+			"value": "5ccbefaf",
+			"type": "string"
+		},
+		{
+			"id": "682559f1-695c-4288-ae35-c9e7c93157bd",
+			"key": "FOOD_API_KEY",
+			"value": "4ae82173acef2499eb9fa05981ef1c07",
+			"type": "string"
+		},
+		{
+			"id": "15321366-ca98-456e-bd05-684a61ae0a36",
+			"key": "RECIPES_APP_ID",
+			"value": "5836defc",
+			"type": "string"
+		},
+		{
+			"id": "ce47c136-69af-4d2b-b1ec-83b3fe4a658a",
+			"key": "RECIPES_API_KEY",
+			"value": "78282d17dc136aea32e59d8ffecd3b6e",
+			"type": "string"
+		},
+		{
+			"id": "0719feac-480d-4f70-819d-0c26e7322986",
+			"key": "THINGS_SPEAK_WRITE_KEY",
+			"value": "T95XP7NVZQ29FFAZ",
+			"type": "string"
+		}
+	]
+}
