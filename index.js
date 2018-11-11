@@ -23,9 +23,12 @@ const server = net.createServer((socket) => {
   socket.on('data',async data => {
     let buffer = new Buffer.from(data, 'utf8');
 
-    //await foodControl.getUPCA('37600110877');
-    console.log('buffer', buffer);
-    console.log('buffer length', buffer.length);
+
+    //console.log('buffer', buffer);
+    //console.log('buffer length', buffer.length);
+    await foodControl.getUPCA(data.slice(2, 13).toString('utf8'));
+
+
   })
   socket.on('end', data => {
     console.log('end', data);
