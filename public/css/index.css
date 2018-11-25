@@ -1,0 +1,29 @@
+img {
+  width: 1.5vw;
+  height: 1.5vw;
+}
+
+a {
+  color: black;
+}
+
+a.active {
+  color: blue;
+}
+
+a.active:hover {
+  color: blue;
+}
+
+a:hover {
+  color: black;
+}
+
+.topbar {
+  margin-bottom: 1.2vw !important;
+}
+
+#myChart{
+  width: 75vw !important;
+  height: 75vh !important;
+}

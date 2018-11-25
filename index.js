@@ -1,14 +1,20 @@
 require('dotenv').config();
 const net = require('net');
 const express = require('express');
+const path = require('path');
 
-const recipes = require('./src/thingspeak/recipes');
 const FoodDatabaseController = require('./src/model/FoodDatabaseController');
+const sensorRouter = require('./src/routes/sensorRouter');
+
+
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 let foodControl = new FoodDatabaseController();
+
+app.use('/public', express.static(path.join(__dirname, 'public')));
+app.use('/sensors', sensorRouter);
 
 const server = net.createServer((socket) => {
 //  socket.on('error', err => {})
@@ -26,7 +32,7 @@ const server = net.createServer((socket) => {
 
     //console.log('buffer', buffer);
     //console.log('buffer length', buffer.length);
-    await foodControl.getUPCA(data.slice(2, 13).toString('utf8'));
+    await foodControl.getUPCA(data.slice(2, 14).toString('utf8'));
 
 
   })
@@ -41,7 +47,7 @@ const server = net.createServer((socket) => {
 // grab an arbitrary unused port.
 server.listen({
   host:'0.0.0.0',
-  port: 5000}, () => {
+  port: 6000}, () => {
   console.log('opened server on', server.address());
 });
 
