@@ -13,8 +13,11 @@ const port = process.env.PORT || 3000;
 
 let foodControl = new FoodDatabaseController();
 
-app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use('/sensors', sensorRouter);
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+
 
 const server = net.createServer((socket) => {
 //  socket.on('error', err => {})
@@ -53,7 +56,8 @@ server.listen({
 
 
 app.get('/',(req, res) => {
-  res.status(200).send({msg:'hello from root'});
+  //res.status(200).send({msg:'hello from root'});
+    res.sendFile(__dirname + '/public/html/index.html')
 })
 
 app.listen(port, async function(err){
