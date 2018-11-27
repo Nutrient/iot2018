@@ -7,7 +7,8 @@ class FoodDatabaseController {
 
     try {
       response = await request(`https://api.edamam.com/api/food-database/parser?upc=${upca}&app_id=${process.env.FOOD_APP_ID}&app_key=${process.env.FOOD_API_KEY}`);
-      console.log(response.body);
+      //console.log(response.body);
+      return response;
     } catch (e) {
       console.log(e);
       throw e;

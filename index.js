@@ -2,9 +2,11 @@ require('dotenv').config();
 const net = require('net');
 const express = require('express');
 const path = require('path');
+const bodyParser = require('body-parser');
 
 const FoodDatabaseController = require('./src/model/FoodDatabaseController');
 const sensorRouter = require('./src/routes/sensorRouter');
+const productsRouter = require('./src/routes/products');
 
 
 
@@ -13,7 +15,10 @@ const port = process.env.PORT || 3000;
 
 let foodControl = new FoodDatabaseController();
 
+app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use('/sensors', sensorRouter);
+app.use('/products', productsRouter);
 
 app.use(express.static(path.join(__dirname, 'public')));
 

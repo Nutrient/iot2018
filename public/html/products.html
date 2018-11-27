@@ -22,7 +22,7 @@
           <div class="sidebar-sticky">
             <ul class="nav flex-column">
               <li>
-                <a class="nav-link active border-bottom" href="/sensors/air">
+                <a class="nav-link border-bottom" href="/sensors/air">
                   <img src="../icons/air.svg"/>
                   <span>Air quality</span>
                 </a>
@@ -35,7 +35,7 @@
                 </a>
               </li>
               <li>
-                <a class="nav-link border-bottom" href="/products/inventory">
+                <a class="nav-link active border-bottom" href="/products/inventory">
                   <img src="../icons/barcode.svg"/>
                   <span>Products</span>
                 </a>
@@ -49,11 +49,17 @@
             </ul>
           </div>
         </div>
-        <div class="col-md-9 ml-sm-auto col-lg-10 px-4 ">
+        <div class="col-md-9 ml-sm-auto col-lg-10 px-4 " style="min-height:100vh">
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h2 class="h2">Air Quality Dashboard</h2>
+            <h2 class="h2">Inventory Dashboard</h2>
           </div>
-          <canvas id="myChart"></canvas>
+          <div>
+            <input id="upcText" type="text" placeholder="UPC-A"/>
+            <input id="upcConfirm" type="button" value="Add"/>
+            <br><br>
+          </div>
+          <ul class="list-group" id="itemContainer"/>
+
         </div>
       </div>
     </div>
@@ -64,7 +70,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js" charset="utf-8"></script>
     <!--test -->
-    <script src="../js/air.js" > </script>
+    <script src="../js/products.js" > </script>
 
   </body>
 </html>
