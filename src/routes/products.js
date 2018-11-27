@@ -27,6 +27,42 @@ productRouter.route('/item')
     })
   })
 
+productRouter.route('/removeProduct')
+  .post((req, res) => {
+    foodControl.removeProduct(req.body.code).then(data => {
+      res.status(200).send(data);;
+    }).catch(err => {
+      console.log(err);
+    })
+  });
+
+productRouter.route('/addProduct')
+  .post((req, res) => {
+    foodControl.addProductStandAlone(req.body.code).then(data => {
+      res.status(200).send(data);;
+    }).catch(err => {
+      console.log(err);
+    })
+  });
+
+productRouter.route('/loadProducts')
+  .get((req, res) => {
+    foodControl.getProductsInitial().then(data => {
+      res.status(200).send(data);;
+    }).catch(err => {
+      console.log(err);
+    })
+  });
+
+productRouter.route('/loadRecipes')
+  .get((req, res) => {
+    foodControl.getRecipesInitial().then(data => {
+      res.status(200).send(data);;
+    }).catch(err => {
+      console.log(err);
+    })
+  });
+
 
 
 module.exports = productRouter;

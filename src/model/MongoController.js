@@ -3,19 +3,18 @@ const dotObject = require('dot-object');
 
 //remember to change plain id to md5 hashed id
 class MongoController  {
-  constructor(db, collection) {
+  constructor(db) {
     this.db = db;
-    this.collection = collection;
     this.url = `mongodb://localhost:27017/${db}`;
   }
 
-  async readOne(id) {
+  async readOne(collection, id) {
     let client;
     try {
       client = await MongoClient.connect(this.url, {
         useNewUrlParser: true
       });
-      return client.db(this.db).collection(this.collection).find({
+      return client.db(this.db).collection(collection).find({
         '_id': id
       }).toArray();
     } catch (e) {
@@ -25,13 +24,13 @@ class MongoController  {
     }
 
   }
-  async readAll() {
+  async readAll(collection) {
     let client;
     try {
       client = await MongoClient.connect(this.url, {
         useNewUrlParser: true
       });
-      return client.db(this.db).collection(this.collection).find({}).toArray();
+      return client.db(this.db).collection(collection).find({}).toArray();
     } catch (e) {
       throw e;
     } finally  {
@@ -39,13 +38,13 @@ class MongoController  {
     }
   };
 
-  async query(query) {
+  async query(collection, query) {
     let client;
     try {
       client = await MongoClient.connect(this.url, {
         useNewUrlParser: true
       });
-      return client.db(this.db).collection(this.collection).find(query).toArray();
+      return client.db(this.db).collection(collection).find(query).toArray();
     } catch (e) {
       throw e;
     } finally  {
@@ -53,26 +52,26 @@ class MongoController  {
     }
   };
 
-  async createOne(new_object) {
+  async insertOne(collection, new_object) {
     let client;
     try {
       client = await MongoClient.connect(this.url, {
         useNewUrlParser: true
       });
-      return client.db(this.db).collection(this.collection).insertOne(new_object);
+      return client.db(this.db).collection(collection).insertOne(new_object);
     } catch (e) {
       throw e;
     } finally  {
       client.close();
     }
   };
-  async bulkCreate(new_object) {
+  async bulkCreate(collection, new_object) {
     let client;
     try {
       client = await MongoClient.connect(this.url, {
         useNewUrlParser: true
       });
-      return client.db(this.db).collection(this.collection).insertMany(new_object);
+      return client.db(this.db).collection(collection).insertMany(new_object);
     } catch (e) {
       throw e;
     } finally  {
@@ -80,7 +79,7 @@ class MongoController  {
     }
   };
 
-  async consistentUpdateOne(id, values) {
+  async updateOne(collection, id, values) {
     let client;
     let valuesDot = {};
 
@@ -89,7 +88,7 @@ class MongoController  {
       client = await MongoClient.connect(this.url, {
         useNewUrlParser: true
       });
-      return client.db(this.db).collection(this.collection).updateOne({
+      return client.db(this.db).collection(collection).updateOne({
         '_id': id
       }, {
         '$set': valuesDot
@@ -101,7 +100,7 @@ class MongoController  {
     }
   };
 
-  async consistentUpdateMany(query, values) {
+  async consistentUpdateMany(collection, query, values) {
     let client;
     let valuesDot = {};
 
@@ -110,7 +109,7 @@ class MongoController  {
       client = await MongoClient.connect(this.url, {
         useNewUrlParser: true
       });
-      return client.db(this.db).collection(this.collection).updateMany(query, {
+      return client.db(this.db).collection(collection).updateMany(query, {
         '$set': valuesDot
       });
     } catch (e) {
@@ -120,7 +119,7 @@ class MongoController  {
     }
   };
 
-  async consistentUpdateOneViaQuery(query, values) {
+  async consistentUpdateOneViaQuery(collection, query, values) {
     let client;
     let valuesDot = {};
 
@@ -129,7 +128,7 @@ class MongoController  {
       client = await MongoClient.connect(this.url, {
         useNewUrlParser: true
       });
-      return client.db(this.db).collection(this.collection).updateOne(query, {
+      return client.db(this.db).collection(collection).updateOne(query, {
         '$set': valuesDot
       });
     } catch (e) {
@@ -138,13 +137,13 @@ class MongoController  {
       client.close();
     }
   };
-  async deleteOne(id) {
+  async deleteOne(collection, id) {
     let client;
     try {
       client = await MongoClient.connect(this.url, {
         useNewUrlParser: true
       });
-      return client.db(this.db).collection(this.collection).deleteOne({
+      return client.db(this.db).collection(collection).deleteOne({
         '_id': id
       });
     } catch (e) {
@@ -154,13 +153,13 @@ class MongoController  {
     }
   };
 
-  async deleteMany(query) {
+  async deleteMany(collection, query) {
     let client;
     try {
       client = await MongoClient.connect(this.url, {
         useNewUrlParser: true
       });
-      return client.db(this.db).collection(this.collection).deleteMany(query);
+      return client.db(this.db).collection(collection).deleteMany(query);
     } catch (e) {
       throw e;
     } finally {
