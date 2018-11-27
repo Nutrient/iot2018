@@ -32,7 +32,7 @@ const getNextValue = function (chart, label, data) {
     chart.data.datasets[0].data.splice(0,1);
   }
   chart.data.labels.push(Date.now());
-  chart.data.datasets[0].data.push(Math.random() * (10) + 0);
+  chart.data.datasets[0].data.push(Math.random() * (510) + 490);
   chart.update();
 }
 

@@ -3,6 +3,7 @@ const net = require('net');
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
+const generator = require('./src/model/generator');
 
 const FoodDatabaseController = require('./src/model/FoodDatabaseController');
 const sensorRouter = require('./src/routes/sensorRouter');
@@ -14,6 +15,14 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 let foodControl = new FoodDatabaseController();
+
+app.all('/*', function(req, res, next) {
+  // CORS headers
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,POST');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content');
+  next();
+});
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -40,6 +49,7 @@ const server = net.createServer((socket) => {
 
     //console.log('buffer', buffer);
     //console.log('buffer length', buffer.length);
+    console.log(buffer);
     await foodControl.getUPCA(data.slice(2, 14).toString('utf8'));
 
 

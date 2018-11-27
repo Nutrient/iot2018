@@ -1,6 +1,9 @@
 const express = require('express');
 const sensorRouter = express.Router();
 const path = require('path');
+const SensorController = require('../model/SensorController');
+
+let sensor = new SensorController();
 
 
 sensorRouter.route('/air')
