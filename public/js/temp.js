@@ -32,11 +32,11 @@ const getNextValue = function (chart, label, data) {
     chart.data.datasets[0].data.splice(0,1);
   }
   chart.data.labels.push(Date.now());
-  chart.data.datasets[0].data.push(Math.random() * (5) + 4.8);
+  chart.data.datasets[0].data.push(Math.random() * (.2) + 4.8);
   chart.update();
 }
 
 
 setInterval(function () {
   getNextValue(myChart, '1', '1')
-}, 1000)
+}, 30000)
