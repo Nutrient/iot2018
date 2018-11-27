@@ -3,6 +3,7 @@ var recoveredUPC = {}
 // 747599306655
 // 070847876564 no sirve
 // 017000016870 no sirve
+// 016000507661
 const getProductsInitial = function () {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
@@ -20,7 +21,7 @@ const getProductsInitial = function () {
 
     }
   }
-   xhttp.open("GET", "http://localhost:3000/products/loadProducts", true);
+   xhttp.open("GET", "http://35.153.138.183:3000/products/loadProducts", true);
    xhttp.send();
 
 }
@@ -30,7 +31,7 @@ const removeProduct = function (upca) {
     $("#"+upca+"-count").empty();
     if(recoveredUPC[upca].count > 0){
       var xhttp = new XMLHttpRequest();
-      xhttp.open("POST", "http://localhost:3000/products/removeProduct", true);
+      xhttp.open("POST", "http://35.153.138.183:3000/products/removeProduct", true);
       xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
       xhttp.send("code="+upca);
       --recoveredUPC[upca].count;
@@ -49,7 +50,7 @@ const getProduct = function(upca) {
      $("#"+upca+"-count").empty();
      $("#"+upca+"-count").append(++recoveredUPC[upca].count) ;
      var xhttp = new XMLHttpRequest();
-     xhttp.open("POST", "http://localhost:3000/products/addProduct", true);
+     xhttp.open("POST", "http://35.153.138.183:3000/products/addProduct", true);
      xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
      xhttp.send("code="+upca);
   }
@@ -67,7 +68,7 @@ const getProduct = function(upca) {
         $("#itemContainer").append("<li class=\"list-group-item\" id=\""+id+"\"><span>"+id + "   "+recoveredUPC[id].name+"</span><span class=\"badge badge-success\" style=\"float:right\" id="+id+"-count>"+recoveredUPC[id].count+"</span></li>");
       }
     }
-    xhttp.open("POST", "http://localhost:3000/products/item", true);
+    xhttp.open("POST", "http://35.153.138.183:3000/products/item", true);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhttp.send("code="+upca);
   }

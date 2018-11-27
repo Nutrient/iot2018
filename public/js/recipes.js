@@ -15,7 +15,7 @@ const getRecipesInitial = function () {
 
     }
   }
-   xhttp.open("GET", "http://localhost:3000/products/loadRecipes", true);
+   xhttp.open("GET", "http://35.153.138.183:3000/products/loadRecipes", true);
    xhttp.send();
 
 }
